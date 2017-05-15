@@ -373,7 +373,7 @@ class Command(BaseCommand):
             fn = os.path.join(dstdir, filename).encode('ascii', 'ignore')
             maker = cdb.cdbmake(fn, fn + '.tmp')
             for user in users: # TODO latest version of python-cdb can do bulk add
-                if user.is_not_retired():
+                if user.is_not_retired() and user.is_not_guest_account():
                     val = getattr(user, key)
                     if val:
                         maker.add(user.uid, val)
